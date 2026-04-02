@@ -1,5 +1,9 @@
 import BudgetDashboard from "./components/BudgetDashboard";
 
 export default function Home() {
-  return <BudgetDashboard />;
+  return (
+    <div className="p-4">
+      <BudgetDashboard />
+    </div>
+  );
 }

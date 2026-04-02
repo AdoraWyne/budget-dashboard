@@ -17,7 +17,7 @@ const Header = ({
   });
 
   return (
-    <header className="grid grid-cols-3 items-center p-4">
+    <header className="grid grid-cols-3 items-center mt-4 mb-4">
       {/* Left: title */}
       <h1 className="text-[10px] font-semibold tracking-widest text-gray-400 w-fit">
         BUDGET DASHBOARD
