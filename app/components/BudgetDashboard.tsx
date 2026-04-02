@@ -4,28 +4,27 @@ import { Temporal } from "@js-temporal/polyfill";
 import transactions from "../../data/transactions.json";
 import { useState } from "react";
 
+import Header from "../components/Header";
+
 const sortedTransactions = [...transactions].sort((a, b) => {
   return Temporal.PlainDate.compare(
     Temporal.PlainDate.from(a.date),
     Temporal.PlainDate.from(b.date),
   );
+  // return a.date.localeCompare(b.date);
 });
 
 const mostRecentDate = Temporal.PlainDate.from(sortedTransactions.at(-1)!.date);
 
-interface SelectedMonthYear {
-  month: number;
-  year: number;
-}
-
 const BudgetDashboard = () => {
-  const [selectedMonthYear, setSelectedMonthYear] = useState<SelectedMonthYear>(
-    {
+  const [selectedMonthYear, setSelectedMonthYear] = useState(
+    Temporal.PlainYearMonth.from({
       month: mostRecentDate.month,
       year: mostRecentDate.year,
-    },
+    }),
   );
 
+  // useMemo
   const selectedMonthTransactions = sortedTransactions.filter((obj) => {
     const date = Temporal.PlainDate.from(obj.date);
     return (
@@ -34,7 +33,23 @@ const BudgetDashboard = () => {
     );
   });
 
-  return <p>adora budget dashboard</p>;
+  const goToPrevMonth = () => {
+    setSelectedMonthYear((prev) => prev.subtract({ months: 1 }));
+  };
+
+  const goToNextMonth = () => {
+    setSelectedMonthYear((prev) => prev.add({ months: 1 }));
+  };
+
+  return (
+    <>
+      <Header
+        selectedMonthYear={selectedMonthYear}
+        onPrevMonth={goToPrevMonth}
+        onNextMonth={goToNextMonth}
+      />
+    </>
+  );
 };
 
 export default BudgetDashboard;
