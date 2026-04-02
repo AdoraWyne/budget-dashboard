@@ -5,6 +5,7 @@ import transactions from "../../data/transactions.json";
 import { useState } from "react";
 
 import Header from "../components/Header";
+import TotalSpent from "./TotalSpent";
 
 const sortedTransactions = [...transactions].sort((a, b) => {
   return Temporal.PlainDate.compare(
@@ -49,6 +50,7 @@ const BudgetDashboard = () => {
         onPrevMonth={goToPrevMonth}
         onNextMonth={goToNextMonth}
       />
+      <TotalSpent selectedMonthTransactions={selectedMonthTransactions} />
     </>
   );
 };
