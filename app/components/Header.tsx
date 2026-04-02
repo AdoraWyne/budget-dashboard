@@ -11,14 +11,17 @@ const Header = ({
   onPrevMonth,
   onNextMonth,
 }: HeaderProps) => {
+  const formattedSelectedMonthYear = selectedMonthYear.toLocaleString("en-AU", {
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <>
       <button type="button" onClick={onPrevMonth}>
         &lt;
       </button>
-      <p>
-        {selectedMonthYear.month} {selectedMonthYear.year}
-      </p>
+      <p>{formattedSelectedMonthYear}</p>
       <button type="button" onClick={onNextMonth}>
         &gt;
       </button>

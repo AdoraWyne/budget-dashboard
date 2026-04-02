@@ -21,6 +21,7 @@ const BudgetDashboard = () => {
     Temporal.PlainYearMonth.from({
       month: mostRecentDate.month,
       year: mostRecentDate.year,
+      calendar: "gregory",
     }),
   );
 
