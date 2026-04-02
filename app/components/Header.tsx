@@ -17,15 +17,36 @@ const Header = ({
   });
 
   return (
-    <>
-      <button type="button" onClick={onPrevMonth}>
-        &lt;
-      </button>
-      <p>{formattedSelectedMonthYear}</p>
-      <button type="button" onClick={onNextMonth}>
-        &gt;
-      </button>
-    </>
+    <header className="grid grid-cols-3 items-center p-4">
+      {/* Left: title */}
+      <p className="text-[10px] font-semibold tracking-widest text-gray-400 w-fit">
+        BUDGET DASHBOARD
+      </p>
+
+      {/* Centre: navigation */}
+      <div className="flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={onPrevMonth}
+          className="text-[#3a2bad] font-bold"
+        >
+          &lt;
+        </button>
+        <span className="text-[#3a2bad] text-xl font-bold whitespace-nowrap">
+          {formattedSelectedMonthYear}
+        </span>
+        <button
+          type="button"
+          onClick={onNextMonth}
+          className="text-[#3a2bad] font-bold"
+        >
+          &gt;
+        </button>
+      </div>
+
+      {/* Right: intentionally empty — balances the grid */}
+      <div />
+    </header>
   );
 };
 
