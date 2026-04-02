@@ -19,12 +19,12 @@ const Header = ({
   return (
     <header className="grid grid-cols-3 items-center p-4">
       {/* Left: title */}
-      <p className="text-[10px] font-semibold tracking-widest text-gray-400 w-fit">
+      <h1 className="text-[10px] font-semibold tracking-widest text-gray-400 w-fit">
         BUDGET DASHBOARD
-      </p>
+      </h1>
 
       {/* Centre: navigation */}
-      <div className="flex items-center justify-center gap-4">
+      <nav className="flex items-center justify-center gap-4">
         <button
           type="button"
           onClick={onPrevMonth}
@@ -42,7 +42,7 @@ const Header = ({
         >
           &gt;
         </button>
-      </div>
+      </nav>
 
       {/* Right: intentionally empty — balances the grid */}
       <div />
