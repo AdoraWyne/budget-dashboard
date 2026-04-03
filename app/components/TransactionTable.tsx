@@ -95,14 +95,13 @@ const TransactionTable = ({
           </tbody>
         </table>
       </div>
-      <div>
+      <div className="w-full text-center">
         {Array.from({ length: table.getPageCount() }, (_, i) => (
           <button
             key={`page-${i}`}
             onClick={() => table.setPageIndex(i)}
-            className={
-              table.getState().pagination.pageIndex === i ? "font-bold" : ""
-            }
+            className={`font-bold mx-2 ${table.getState().pagination.pageIndex === i ? "" : "underline"}
+            `}
           >
             {i + 1}
           </button>
