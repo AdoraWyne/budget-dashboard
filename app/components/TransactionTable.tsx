@@ -1,7 +1,11 @@
+"use client";
+
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
+  PaginationState,
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
@@ -20,6 +24,10 @@ interface TransactionTableProps {
 const TransactionTable = ({
   selectedMonthTransactions,
 }: TransactionTableProps) => {
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 5,
+  });
 
   const columnHelper = createColumnHelper<SelectedMonthTransaction>();
 
@@ -34,6 +42,9 @@ const TransactionTable = ({
     data: selectedMonthTransactions,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    state: { pagination },
+    onPaginationChange: setPagination,
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
@@ -70,6 +81,19 @@ const TransactionTable = ({
             ))}
           </tbody>
         </table>
+      </div>
+      <div>
+        {Array.from({ length: table.getPageCount() }, (_, i) => (
+          <button
+            key={`page-${i}`}
+            onClick={() => table.setPageIndex(i)}
+            className={
+              table.getState().pagination.pageIndex === i ? "font-bold" : ""
+            }
+          >
+            {i + 1}
+          </button>
+        ))}
       </div>
     </div>
   );
