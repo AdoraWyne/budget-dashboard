@@ -28,13 +28,15 @@ const BudgetDashboard = () => {
   );
 
   // useMemo
-  const selectedMonthTransactions = sortedTransactions.filter((obj) => {
-    const date = Temporal.PlainDate.from(obj.date);
-    return (
-      date.month === selectedMonthYear.month &&
-      date.year === selectedMonthYear.year
-    );
-  });
+  const selectedMonthTransactions = sortedTransactions
+    .filter((obj) => {
+      const date = Temporal.PlainDate.from(obj.date);
+      return (
+        date.month === selectedMonthYear.month &&
+        date.year === selectedMonthYear.year
+      );
+    })
+    .reverse();
 
   const goToPrevMonth = () => {
     setSelectedMonthYear((prev) => prev.subtract({ months: 1 }));

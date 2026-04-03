@@ -36,8 +36,6 @@ const TransactionTable = ({
     pageSize: 5,
   });
 
-  const reversedSelectedMonthTransactions = selectedMonthTransactions.reverse();
-
   const columnHelper = createColumnHelper<SelectedMonthTransaction>();
 
   const columns = [
@@ -54,7 +52,7 @@ const TransactionTable = ({
   ];
 
   const table = useReactTable<SelectedMonthTransaction>({
-    data: reversedSelectedMonthTransactions,
+    data: selectedMonthTransactions,
     columns,
     getCoreRowModel: getCoreRowModel(),
     state: { pagination },
