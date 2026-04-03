@@ -10,12 +10,19 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 
+import { currencyFormatter } from "./TotalSpent";
+
 interface SelectedMonthTransaction {
   date: string;
   amount: number;
   payee: string;
   category: string;
 }
+
+const formatDate = (dateString: string) => {
+  const [year, month, day] = dateString.split("-");
+  return `${day}.${month}.${year}`;
+};
 
 interface TransactionTableProps {
   selectedMonthTransactions: SelectedMonthTransaction[];
@@ -33,8 +40,14 @@ const TransactionTable = ({
 
   const columns = [
     columnHelper.accessor("payee", { header: "PAYEE" }),
-    columnHelper.accessor("date", { header: "DATE" }),
-    columnHelper.accessor("amount", { header: "AMOUNT" }),
+    columnHelper.accessor("date", {
+      header: "DATE",
+      cell: (info) => formatDate(info.getValue()),
+    }),
+    columnHelper.accessor("amount", {
+      header: "AMOUNT",
+      cell: (info) => currencyFormatter.format(info.getValue()),
+    }),
     columnHelper.accessor("category", { header: "CATEGORY" }),
   ];
 

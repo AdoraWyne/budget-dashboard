@@ -9,7 +9,7 @@ interface TotalSpentProps {
   selectedMonthTransactions: SelectedMonthTransaction[];
 }
 
-const formatter = new Intl.NumberFormat("en-AU", {
+export const currencyFormatter = new Intl.NumberFormat("en-AU", {
   style: "currency",
   currency: "AUD",
   maximumFractionDigits: 2,
@@ -21,7 +21,7 @@ const TotalSpent = ({ selectedMonthTransactions }: TotalSpentProps) => {
     0,
   );
 
-  const formattedTotalSpent = formatter.format(totalSpent);
+  const formattedTotalSpent = currencyFormatter.format(totalSpent);
 
   return (
     <div className="bg-white text-xs text-center border-none rounded-lg p-4">
