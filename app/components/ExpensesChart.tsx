@@ -12,19 +12,17 @@ interface ExpensesChartProps {
 }
 
 const ExpensesChart = ({ selectedMonthTransactions }: ExpensesChartProps) => {
-  const data: [[string, string], ...[string, number][]] = [
-    ["Category", "Amount"],
-  ];
+  const transformedData = new Map<string, number>();
 
   selectedMonthTransactions.forEach((obj) => {
-    const existing = data.find((ele) => ele[0] === obj.category);
-
-    if (existing && typeof existing[1] === "number") {
-      existing[1] += obj.amount;
-    } else {
-      data.push([obj.category, obj.amount]);
-    }
+    const current = transformedData.get(obj.category) ?? 0;
+    transformedData.set(obj.category, current + obj.amount);
   });
+
+  const data: [[string, string], ...[string, number][]] = [
+    ["Category", "Amount"],
+    ...transformedData.entries(),
+  ];
 
   return (
     <div className="bg-white text-xs border-none rounded-lg p-4 my-4">
