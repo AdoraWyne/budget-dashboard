@@ -1,14 +1,9 @@
 import type { SelectedMonthTransaction } from "../types";
+import { currencyFormatter } from "../utils/formatters";
 
 interface TotalSpentProps {
   selectedMonthTransactions: SelectedMonthTransaction[];
 }
-
-export const currencyFormatter = new Intl.NumberFormat("en-AU", {
-  style: "currency",
-  currency: "AUD",
-  maximumFractionDigits: 2,
-});
 
 const TotalSpent = ({ selectedMonthTransactions }: TotalSpentProps) => {
   const totalSpent = selectedMonthTransactions.reduce(

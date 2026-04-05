@@ -11,12 +11,7 @@ import {
 import { useState } from "react";
 
 import type { SelectedMonthTransaction } from "../types";
-import { currencyFormatter } from "./TotalSpent";
-
-const formatDate = (dateString: string) => {
-  const [year, month, day] = dateString.split("-");
-  return `${day}.${month}.${year}`;
-};
+import { currencyFormatter, formatDate } from "../utils/formatters";
 
 const columnHelper = createColumnHelper<SelectedMonthTransaction>();
 
