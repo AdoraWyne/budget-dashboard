@@ -9,15 +9,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
+import type { SelectedMonthTransaction } from "../types";
 
 import { currencyFormatter } from "./TotalSpent";
-
-interface SelectedMonthTransaction {
-  date: string;
-  amount: number;
-  payee: string;
-  category: string;
-}
 
 const formatDate = (dateString: string) => {
   const [year, month, day] = dateString.split("-");

@@ -1,9 +1,4 @@
-interface SelectedMonthTransaction {
-  date: string;
-  amount: number;
-  payee: string;
-  category: string;
-}
+import type { SelectedMonthTransaction } from "../types";
 
 interface TotalSpentProps {
   selectedMonthTransactions: SelectedMonthTransaction[];
