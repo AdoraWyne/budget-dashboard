@@ -2,7 +2,7 @@
 
 import { Temporal } from "@js-temporal/polyfill";
 import transactions from "../../data/transactions.json";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import Header from "../components/Header";
 import TotalSpent from "./TotalSpent";
@@ -28,16 +28,17 @@ const BudgetDashboard = () => {
     }),
   );
 
-  // useMemo
-  const selectedMonthTransactions = sortedTransactions
-    .filter((obj) => {
-      const date = Temporal.PlainDate.from(obj.date);
-      return (
-        date.month === selectedMonthYear.month &&
-        date.year === selectedMonthYear.year
-      );
-    })
-    .reverse();
+  const selectedMonthTransactions = useMemo(() => {
+    return sortedTransactions
+      .filter((obj) => {
+        const date = Temporal.PlainDate.from(obj.date);
+        return (
+          date.month === selectedMonthYear.month &&
+          date.year === selectedMonthYear.year
+        );
+      })
+      .reverse();
+  }, [selectedMonthYear]);
 
   const goToPrevMonth = () => {
     setSelectedMonthYear((prev) => prev.subtract({ months: 1 }));
