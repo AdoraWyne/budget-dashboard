@@ -10,11 +10,7 @@ import TransactionTable from "./TransactionTable";
 import ExpensesChart from "./ExpensesChart";
 
 const sortedTransactions = [...transactions].sort((a, b) => {
-  return Temporal.PlainDate.compare(
-    Temporal.PlainDate.from(a.date),
-    Temporal.PlainDate.from(b.date),
-  );
-  // return a.date.localeCompare(b.date);
+  return Temporal.PlainDate.compare(a.date, b.date);
 });
 
 const mostRecentDate = Temporal.PlainDate.from(sortedTransactions.at(-1)!.date);
