@@ -52,8 +52,12 @@ const BudgetDashboard = () => {
         onNextMonth={goToNextMonth}
       />
       <TotalSpent selectedMonthTransactions={selectedMonthTransactions} />
-      <TransactionTable selectedMonthTransactions={selectedMonthTransactions} />
-      <ExpensesChart selectedMonthTransactions={selectedMonthTransactions} />
+      <div className="flex flex-col lg:flex-row lg:gap-4">
+        <ExpensesChart selectedMonthTransactions={selectedMonthTransactions} />
+        <TransactionTable
+          selectedMonthTransactions={selectedMonthTransactions}
+        />
+      </div>
     </>
   );
 };

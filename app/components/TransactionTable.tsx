@@ -50,7 +50,7 @@ const TransactionTable = ({
   });
 
   return (
-    <div className="bg-white text-xs border-none rounded-lg p-4 my-4">
+    <div className="bg-white text-xs border-none rounded-lg p-4 my-4 lg:w-3/5">
       <h2 className="text-gray-400 font-semibold mb-4">
         TRANSACTIONS THIS MONTH
       </h2>
