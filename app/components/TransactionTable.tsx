@@ -9,14 +9,29 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import type { SelectedMonthTransaction } from "../types";
 
+import type { SelectedMonthTransaction } from "../types";
 import { currencyFormatter } from "./TotalSpent";
 
 const formatDate = (dateString: string) => {
   const [year, month, day] = dateString.split("-");
   return `${day}.${month}.${year}`;
 };
+
+const columnHelper = createColumnHelper<SelectedMonthTransaction>();
+
+const columns = [
+  columnHelper.accessor("payee", { header: "PAYEE" }),
+  columnHelper.accessor("date", {
+    header: "DATE",
+    cell: (info) => formatDate(info.getValue()),
+  }),
+  columnHelper.accessor("amount", {
+    header: "AMOUNT",
+    cell: (info) => currencyFormatter.format(info.getValue()),
+  }),
+  columnHelper.accessor("category", { header: "CATEGORY" }),
+];
 
 interface TransactionTableProps {
   selectedMonthTransactions: SelectedMonthTransaction[];
@@ -30,21 +45,6 @@ const TransactionTable = ({
     pageSize: 5,
   });
 
-  const columnHelper = createColumnHelper<SelectedMonthTransaction>();
-
-  const columns = [
-    columnHelper.accessor("payee", { header: "PAYEE" }),
-    columnHelper.accessor("date", {
-      header: "DATE",
-      cell: (info) => formatDate(info.getValue()),
-    }),
-    columnHelper.accessor("amount", {
-      header: "AMOUNT",
-      cell: (info) => currencyFormatter.format(info.getValue()),
-    }),
-    columnHelper.accessor("category", { header: "CATEGORY" }),
-  ];
-
   const table = useReactTable<SelectedMonthTransaction>({
     data: selectedMonthTransactions,
     columns,
@@ -55,7 +55,7 @@ const TransactionTable = ({
   });
 
   return (
-    <div className="bg-white text-xs border-none rounded-lg p-4 mt-4 mb-4">
+    <div className="bg-white text-xs border-none rounded-lg p-4 my-4">
       <h2 className="text-gray-400 font-semibold mb-4">
         TRANSACTIONS THIS MONTH
       </h2>
