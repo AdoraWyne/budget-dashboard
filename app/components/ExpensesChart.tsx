@@ -13,10 +13,7 @@ const ExpensesChart = ({ selectedMonthTransactions }: ExpensesChartProps) => {
     transformedData.set(obj.category, current + obj.amount);
   });
 
-  const data: [[string, string], ...[string, number][]] = [
-    ["Category", "Amount"],
-    ...transformedData.entries(),
-  ];
+  const data = [["Category", "Amount"], ...transformedData.entries()];
 
   return (
     <div className="bg-white text-xs border-none rounded-lg p-4 my-4 lg:w-2/5">
